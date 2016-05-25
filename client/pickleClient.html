@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Pickle Request Tester</title>
+  </head>
+  <body>
+    <h1>Get a pickle fact!</h1>
+    <span id='fact'></span>
+    <br>
+    <button type="button" name="button" onclick="getFact()">Fact</button>
+    <h1>Get recent facts! Get's the most recent facts, based on the number in the input below</h1>
+    <input type="text" name="name" value="" id="pickle-recent">
+    <button type="button" name="button" onclick="getRecent()">Recent</button>
+    <br>
+    <ul id="recent"></ul>
+  </body>
+  <script type="text/javascript">
+    function getFact(){
+      document.getElementById('fact').innerHTML = 'loading'
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', 'http://localhost:8080/fact');
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.onload = () => document.getElementById('fact').innerHTML = JSON.parse(xhr.response).fact
+      xhr.send();
+    }
+
+    function getRecent() {
+      number = parseInt(document.getElementById('pickle-recent').value)
+      if (isNaN(number)) document.getElementById('recent').innerHTML = 'Please put in a number';
+      else {
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', 'http://localhost:8080/recent/' + number);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onload = () => {
+          ul = document.getElementById('recent');
+          ul.innerHTML = '';
+          JSON.parse(xhr.response)
+            .forEach(fact => {
+              const li = document.createElement("li");
+              li.appendChild(document.createTextNode(fact))
+              ul.appendChild(li)
+          })
+        }
+        xhr.send();
+      }
+    }
+  </script>
+</html>
