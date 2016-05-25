@@ -7,13 +7,13 @@ npm install
 npm start
 ```
 ## Dependencies and Notes
-This server requires a Redis server to be running. Gulp was chosen as a build tool to minify the source code to enhance performance by a small amount. It also allowed full exposure of ES6 features via babel. The two main dependencies used were request and the node redis npm package (redis). These were used in order to create a simple https request to hook.io/samhavens/pickle and for interfacing with redis. Also used on the main server side was the cors package to allow outside sources to make requests securely. 
+This server requires a Redis server to be running. Gulp was chosen as a build tool to minify the source code to enhance performance by a small amount. It also allowed full exposure of ES6 features via babel. The two main dependencies used were request and the node redis npm package (redis). These were used in order to create a simple https request to hook.io/samhavens/pickle and for interfacing with redis. Also used on the main server side was the cors package to allow outside sources to make requests securely.
 
 ## API
 The current api stands as follows, there are two routes
-```http://localhost:8080/fact```
+`http://localhost:8080/fact`
 This particular route makes a request to hook.io/samhavens/pickle for pickle facts and sends them to the user
-```http://localhost:8080/recent/:number```
+`http://localhost:8080/recent/:number`
 This route sends an array of the most recent :number of facts back to the user
 
 Both of these can be tested via ```client/pickleClient.html```, where an xhr request is sent to the localhost to demonstrate how both of these work.
