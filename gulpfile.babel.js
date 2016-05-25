@@ -25,3 +25,4 @@ gulp.task('watch', () => {
 });
 
 gulp.task('default', ['server', 'watch', 'nodemon']);
+gulp.task('build', ['server']);

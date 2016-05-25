@@ -4,7 +4,9 @@
   "description": "CarLabs Tech Challenge - Theodore Zilist",
   "main": "index.js",
   "scripts": {
-    "start": "gulp default",
+    "build": "gulp build",
+    "start-dev": "gulp default",
+    "start": "node dist/server/server.js",
     "test": "mocha --compilers js:babel-core/register --recursive",
     "test:watch": "npm run test --  --watch"
   },
